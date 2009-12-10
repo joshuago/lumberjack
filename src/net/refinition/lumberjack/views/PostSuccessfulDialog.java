@@ -9,14 +9,17 @@ import java.awt.LayoutManager;
 
 public class PostSuccessfulDialog
 {
-  public void show(PostEditor postEditor) 
+  public void show(PostEditor postEditor, Boolean isDraft) 
   {
       JFrame parent_frame = null;
 
       if (postEditor != null)
           parent_frame = postEditor.getFrame();
 
-      JOptionPane.showMessageDialog(parent_frame, "Your post was successful!", "Lumberjack", JOptionPane.INFORMATION_MESSAGE);
+      if (isDraft == true)
+        JOptionPane.showMessageDialog(parent_frame, "Your draft was successfully saved!", "Lumberjack", JOptionPane.INFORMATION_MESSAGE);
+      else
+        JOptionPane.showMessageDialog(parent_frame, "Your post was successfully published!", "Lumberjack", JOptionPane.INFORMATION_MESSAGE);
 
   }
 }

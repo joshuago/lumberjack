@@ -103,7 +103,7 @@ public class PostsController implements ActionListener
             //postEditor.setContentText("");
 
             PostSuccessfulDialog psd = new PostSuccessfulDialog();
-            psd.show(postEditor);
+            psd.show(postEditor, isDraft);
 
             postEditor.dispose();
             postEditor = null;
