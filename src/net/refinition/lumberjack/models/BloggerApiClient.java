@@ -173,6 +173,7 @@ public class BloggerApiClient
   {
       selectedPost.setTitle(new PlainTextConstruct(title));
       selectedPost.setContent(new PlainTextConstruct(content));
+      selectedPost.setDraft(isDraft);
 
       URL editUrl = new URL(selectedPost.getEditLink().getHref());
       return bloggerService.update(editUrl, selectedPost);
