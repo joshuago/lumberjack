@@ -20,6 +20,8 @@ import net.refinition.lumberjack.models.BloggerApiClient;
 import net.refinition.lumberjack.views.PostEditor;
 import net.refinition.lumberjack.views.PostManager;
 import net.refinition.lumberjack.views.AboutDialog;
+import net.refinition.lumberjack.views.NoPermissionToEditDialog;
+import net.refinition.lumberjack.views.PostSuccessfulDialog;
 
 import javax.swing.*;
 import java.awt.Dimension;
@@ -34,6 +36,7 @@ import java.io.IOException;
 
 import com.google.gdata.util.ServiceException;
 import com.google.gdata.data.HtmlTextConstruct;
+import com.google.gdata.util.AuthenticationException;
 
 public class PostsController implements ActionListener
 {
@@ -85,13 +88,22 @@ public class PostsController implements ActionListener
 
         try {
             if (bloggerApiClient.getSelectedPost() == null)
+            {
                 bloggerApiClient.createPost(post_title, post_content, isDraft);
+                bloggerApiClient.populatePosts();
+            }
             else
+            {
                 bloggerApiClient.updatePost(post_title, post_content, isDraft);
+                bloggerApiClient.populatePosts();
+            }
 
             //System.out.println("Post saved! Clearing fields.");
             //postEditor.setTitleText("");
             //postEditor.setContentText("");
+
+            PostSuccessfulDialog psd = new PostSuccessfulDialog();
+            psd.show(postEditor);
 
             postEditor.dispose();
             postEditor = null;
@@ -99,6 +111,11 @@ public class PostsController implements ActionListener
             bloggerApiClient.deselectPost();
             postEditor = new PostEditor(this, bloggerApiClient.getBlogNames() ); 
             showWindow();
+        }
+        catch (AuthenticationException ex) 
+        {
+            NoPermissionToEditDialog npted = new NoPermissionToEditDialog();
+            npted.show(postEditor);
         }
         catch (ServiceException ex)
         {
