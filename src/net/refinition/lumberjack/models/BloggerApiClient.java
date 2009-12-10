@@ -4,6 +4,7 @@ import com.google.gdata.client.*;
 import com.google.gdata.data.*;
 import com.google.gdata.data.blogger.*;
 import com.google.gdata.util.*;
+
 import java.io.IOException;
 import java.net.URL;
 import java.net.MalformedURLException;
@@ -112,13 +113,23 @@ public class BloggerApiClient
       return blogNamesArray;
   }
 
-  public String [] getPostNames()
+  public String [][] getPostNamesAndStatuses()
   {
-      String [] postNamesArray = new String[postArray.length];
-      for (int i = 0; i < postArray.length; i++)
-        postNamesArray[i] = postArray[i].getTitle().getPlainText();
+      String [][] postNamesAndStatusesArray = new String[postArray.length][3];
 
-      return postNamesArray;
+      for (int i = 0; i < postArray.length; i++)
+      {
+        postNamesAndStatusesArray[i][0] = postArray[i].getTitle().getPlainText();
+
+        if ( postArray[i].isDraft() )
+          postNamesAndStatusesArray[i][1] = "draft";
+        else
+          postNamesAndStatusesArray[i][1] = "published";
+
+        postNamesAndStatusesArray[i][2] = postArray[i].getUpdated().toUiString();
+      }
+
+      return postNamesAndStatusesArray;
   }
 
   public BlogEntry getSelectedBlog()

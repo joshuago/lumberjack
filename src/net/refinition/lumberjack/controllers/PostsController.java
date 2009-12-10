@@ -70,7 +70,7 @@ public class PostsController implements ActionListener
     }
     else if ( "manage_posts".equals(e.getActionCommand()) )
     {
-        postManager = new PostManager(this, bloggerApiClient.getPostNames() ); 
+        postManager = new PostManager(this, bloggerApiClient.getPostNamesAndStatuses() ); 
         postManager.show();
     }
     else if ( "about_lumberjack".equals(e.getActionCommand()) )
@@ -131,8 +131,8 @@ public class PostsController implements ActionListener
     }
     else if ( "load_post".equals(e.getActionCommand()) )
     {
-        JList postList = postManager.getPostList();
-        int selectedIndex = postList.getSelectedIndex();
+        JTable postTable = postManager.getPostTable();
+        int selectedIndex = postTable.getSelectedRow();
         System.out.println("Selected index: " + selectedIndex);
 
         bloggerApiClient.selectPost(selectedIndex);

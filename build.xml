@@ -22,7 +22,7 @@
   </target>
 
   <target name="compile" depends="init" description="compile the source">
-    <javac srcdir="${src}" destdir="${build}" compiler="modern">
+    <javac srcdir="${src}" destdir="${build}" compiler="modern" debug="on">
       <classpath refid="project.class.path" />
     </javac>
 
