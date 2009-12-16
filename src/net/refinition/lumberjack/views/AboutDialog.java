@@ -16,7 +16,7 @@ public class AboutDialog
       if (postEditor != null)
           parent_frame = postEditor.getFrame();
 
-      JOptionPane.showMessageDialog(parent_frame, "Lumberjack is a client for Google Blogger.\n\nAuthor: Joshua Go <joshuago@gmail.com>\n\nCopyright 2009 Refinition, Inc.", "Lumberjack - About", JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(parent_frame, "Lumberjack is a client for Google Blogger.\n\nAuthor: Joshua Go <joshuago@gmail.com>\n\nCopyright 2009 Joshua Go.", "Lumberjack - About", JOptionPane.INFORMATION_MESSAGE);
 
   }
 }
