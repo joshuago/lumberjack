@@ -21,7 +21,6 @@ import javax.swing.plaf.metal.*;
 
 public class Main
 {
-
     /**
      * Create the GUI and show it.  For thread safety,
      * this method should be invoked from the
@@ -41,7 +40,6 @@ public class Main
         //LumberjackAboutDialog ljad = new LumberjackAboutDialog();
         //ljad.show();
     }
-
 
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:

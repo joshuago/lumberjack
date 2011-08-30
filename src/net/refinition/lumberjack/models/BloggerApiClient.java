@@ -45,7 +45,6 @@ public class BloggerApiClient
     {
       System.out.println("AUTHENTICATION FAILED");
       icex.printStackTrace();
-      return null;
     }
     catch (Exception ex)
     {
@@ -65,6 +64,10 @@ public class BloggerApiClient
         {
             blogArray[i] = resultFeed.getEntries().get(i); 
         }
+      }
+      catch (AuthenticationException authex) {
+        authex.printStackTrace();
+        blogArray = new BlogEntry[0];
       }
       catch (IOException ex) {
         ex.printStackTrace();

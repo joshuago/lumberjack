@@ -72,6 +72,15 @@ public class LoginWindow
       return null;
   }
 
+  public void setUsername(String username)
+  {
+    if (usernameField != null)
+    {
+      usernameField.setText(username);
+    }
+  }
+
+
   public String getPassword()
   {
     if (passwordField != null)
@@ -79,4 +88,5 @@ public class LoginWindow
     else
       return null;
   }
+
 }
